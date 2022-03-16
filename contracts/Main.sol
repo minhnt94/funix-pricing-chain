@@ -73,6 +73,7 @@ contract Main is Admin {
                 uint256 finalPrice
             ) = currentSession.getInfo();
             SessionInfo memory info = SessionInfo(
+                sessionIndex,
                 name,
                 description,
                 images,

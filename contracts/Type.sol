@@ -23,6 +23,7 @@ enum SessionState {
 }
 
 struct SessionInfo {
+    uint256 id;
     string name;
     string description;
     string[] images;

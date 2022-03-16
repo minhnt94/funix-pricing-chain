@@ -2,29 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Layout from '../../components/Layout';
 import './SessionList.scss';
 import { useAppInfo } from '../../AppContext';
-import { ROLE } from '../../constants';
+import { ROLE, STATUS } from '../../constants';
 import { useNavigate } from 'react-router-dom';
-
-const mockData = [
-  {
-    id: 0,
-    images: ['https://picsum.photos/200', 'https://picsum.photos/200'],
-    name: 'Old product',
-    description: 'This is my very old one',
-    state: 'ongoing',
-    proposePrice: 0,
-    finalPrice: 0,
-  },
-  {
-    id: 1,
-    images: ['https://picsum.photos/200', 'https://picsum.photos/200'],
-    name: 'Old product',
-    description: 'My weird product',
-    state: 'closed',
-    proposePrice: 100,
-    finalPrice: 150,
-  },
-];
 
 function SessionList(props) {
   const [sessions, setSessions] = useState([]);
@@ -32,23 +11,25 @@ function SessionList(props) {
   const proposePriceEle = useRef();
   const finalPriceEle = useRef();
   const { appInfo } = useAppInfo();
+  const { accounts, contract } = appInfo;
   const isAdmin = appInfo.role === ROLE.ADMIN;
   const navigate = useNavigate();
 
   useEffect(() => {
-    setSessions(mockData);
+    // setSessions(mockData);
     //call to get list session
 
     async function fetchSessions() {
-      const { accounts, contract } = appInfo;
       if (contract) {
-        const sessions =  await contract.methods.getSessions().call({ from: accounts[0] });
-        console.log('sessions', sessions)
+        const sessions = await contract.methods
+          .getSessions()
+          .call({ from: accounts[0] });
+        // console.log('sessions', sessions)
+        setSessions(sessions);
       }
     }
 
     fetchSessions();
- 
   }, [appInfo]);
 
   const renderImages = (images) => {
@@ -65,18 +46,40 @@ function SessionList(props) {
     setCurrentSession(null);
   };
 
-  const handleSubmitProposePrice = () => {
-    const proposePrice = proposePriceEle.current.value;
-    // TODO submit propose price
+  const handleSubmitProposePrice = async () => {
+    const proposePrice = parseInt(proposePriceEle.current.value);
+    const sessionId = currentSession.id;
+    console.log(sessionId, proposePrice)
+
+    await contract.methods
+      .submitPrice(sessionId, proposePrice)
+      .send({ from: accounts[0] });
   };
 
-  const handleSubmitFinalPrice = () => {
+  const handleSubmitFinalPrice = async () => {
     const finalPrice = finalPriceEle.current.value;
-    // TODO submit final price
+    const sessionId = currentSession.id;
+
+    await contract.methods
+      .setFinalPrice(sessionId, finalPrice)
+      .send({ from: accounts[0] });
   };
 
-  const handleCloseSession = () => {
-    // TODO close session.
+  const handleCloseSession = async () => {
+    const sessionId = currentSession.id;
+    await contract.methods.closeSession(sessionId).send({ from: accounts[0] });
+    handleBack();
+  };
+
+  const getStatusText = (status) => {
+    switch (status) {
+      case STATUS.ON_GOING:
+        return 'On Going';
+      case STATUS.CLOSED:
+        return 'Closed';
+      default:
+        return 'On Going';
+    }
   };
 
   return (
@@ -84,7 +87,9 @@ function SessionList(props) {
       {!Boolean(currentSession) && (
         <div className="sessions">
           <h1 className="sessions__title">Session list page here</h1>
-          {isAdmin && <button onClick={() => navigate('create')}>Add new session</button>}
+          {isAdmin && (
+            <button onClick={() => navigate('create')}>Add new session</button>
+          )}
           <table className="sessions__table">
             <thead>
               <tr>
@@ -93,9 +98,9 @@ function SessionList(props) {
                 <th>Name</th>
                 <th>Status</th>
                 <th>Description</th>
-                <th>Propose Price</th>
+                {/* <th>Propose Price</th> */}
                 <th>Final price</th>
-                <th></th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -104,12 +109,17 @@ function SessionList(props) {
                   <td>{index + 1}</td>
                   <td>{renderImages(session.images)}</td>
                   <td>{session.name}</td>
-                  <td>{session.state}</td>
+                  <td>{getStatusText(session.state)}</td>
                   <td>{session.description}</td>
-                  <td>{session.proposePrice}</td>
-                  <td>{session.finalPrice}</td>
+                  {/* <td>{session.proposePrice}</td> */}
                   <td>
-                    <button type="button" onClick={() => handleViewDetail(index)}>
+                    {session.state === STATUS.CLOSED && session.finalPrice}
+                  </td>
+                  <td>
+                    <button
+                      type="button"
+                      onClick={() => handleViewDetail(index)}
+                    >
                       View detail
                     </button>
                   </td>
@@ -136,24 +146,30 @@ function SessionList(props) {
               Description: <span>{currentSession.description}</span>
             </div>
             <div className="info__state">
-              State: <span>{currentSession.state}</span>
+              Status: <span>{getStatusText(currentSession.state)}</span>
             </div>
-            <div className="info__propose-price">
-              <label>Propose price:</label>
-              <input
-                value={currentSession.proposePrice}
-                ref={proposePriceEle}
-              />
-              <button onClick={handleSubmitProposePrice}>
-                Submit propose price
-              </button>
-            </div>
-            <div className="info__final-price">
-              <label>Final price:</label>
-              <input value={currentSession.finalPrice} ref={finalPriceEle} />
-              <button onClick={handleSubmitFinalPrice}>Set final price</button>
-            </div>
-            <button onClick={handleCloseSession}>Close session</button>
+            {currentSession.state == STATUS.ON_GOING && !isAdmin && (
+              <div className="info__propose-price">
+                <label>Propose price:</label>
+                <input ref={proposePriceEle} />
+                <button onClick={handleSubmitProposePrice}>
+                  Submit propose price
+                </button>
+              </div>
+            )}
+
+            {currentSession.state == STATUS.CLOSED && isAdmin && (
+              <div className="info__final-price">
+                <label>Final price:</label>
+                <input value={currentSession.finalPrice} ref={finalPriceEle} />
+                <button onClick={handleSubmitFinalPrice}>
+                  Set final price
+                </button>
+              </div>
+            )}
+            {currentSession.state == STATUS.ON_GOING && isAdmin && (
+              <button onClick={handleCloseSession}>Close session</button>
+            )}
           </div>
         </div>
       )}
