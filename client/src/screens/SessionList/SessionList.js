@@ -2,15 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import Layout from '../../components/Layout';
 import './SessionList.scss';
 
-// address parentContract;
-// string name;
-// string description;
-// string[] images;
-// uint proposePrice;
-// uint timeout;
-// uint initTime;
-// uint finalPrice;
-
 const mockData = [
   {
     id: 0,
@@ -90,7 +81,7 @@ function SessionList(props) {
             </thead>
             <tbody>
               {sessions.map((session, index) => (
-                <tr className="session-info">
+                <tr className="session-info" key={index}>
                   <td>{index + 1}</td>
                   <td>{renderImages(session.images)}</td>
                   <td>{session.name}</td>

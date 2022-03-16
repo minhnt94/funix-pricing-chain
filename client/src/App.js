@@ -1,7 +1,4 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import SimpleStorageContract from './contracts/SimpleStorage.json';
-import MainContract from './contracts/Main.json';
-import getWeb3 from './getWeb3';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.scss';
@@ -15,51 +12,6 @@ import User from './screens/User';
 import AppContextProvider, { useAppInfo, AppContext } from './AppContext';
 
 function App() {
-  // const [storageValue, setStorageValue] = useState(null);
-  // const [web3, setWeb3] = useState(null);
-  // const [accounts, setAccounts] = useState(null);
-  // const [contract, setContract] = useState(null);
-  // const { appInfo, setAppInfo } = useAppInfo();
-
-  const { appInfo } = useContext(AppContext);
-
-  useEffect(() => {
-    console.log('appInfo', appInfo);
-  }, [appInfo]);
-
-  const inputRef = useRef(null);
-
-  // useEffect(() => {
-  //   async function init() {
-  //     const { accounts, contract } = appInfo;
-  //     // setWeb3(web3);
-  //     // setAccounts(accounts);
-  //     // setContract(instance);
-
-  //     await contract.methods.set(5).send({ from: accounts[0] });
-
-  //     const response = await contract.methods.get().call();
-
-  //     // Update state with the result.
-  //     setStorageValue(response);
-  //   };
-
-  //   init();
-  // }, [appInfo.accounts]);
-
-  // const handleClick = async (e) => {
-  //   await contract.methods
-  //     .set(+inputRef.current.value)
-  //     .send({ from: accounts[0] });
-
-  //   const response = await contract.methods.get().call();
-
-  //   // Update state with the result.
-  //   setStorageValue(response);
-  // };
-
-  // if (!web3) return <div>Loading Web3, accounts, and contract...</div>;
-
   return (
     <BrowserRouter>
       <Routes>
