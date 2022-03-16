@@ -2,16 +2,43 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.scss';
-// import SessionsScreen from './screens/SessionsScreen/SessionsScreen';
-import Session from './screens/Session';
 import Login from './screens/Login';
 import Register from './screens/Register';
 import SessionList from './screens/SessionList';
+import CreateSession from './screens/CreateSession';
 import UserList from './screens/UserList';
 import User from './screens/User';
-import AppContextProvider, { useAppInfo, AppContext } from './AppContext';
+import { useAppInfo } from './AppContext';
 
 function App() {
+  const { appInfo, setAppInfo } = useAppInfo();
+
+  useEffect(() => {
+    async function checkUser() {
+      const { accounts, contract } = appInfo;
+      if (contract) {
+        const role = parseInt(
+          await contract.methods.checkRole().call({ from: accounts[0] })
+        );
+        console.log('role', role)
+        setAppInfo((prev) => {
+          return {
+            ...prev,
+            role,
+          };
+        });
+        // if (role === ROLE.UNREGISTER) {
+        //   // case unregister
+        //   navigate('/register');
+        // } else {
+        //   navigate('/sessions');
+        // }
+      }
+    };
+
+    checkUser();
+  }, [appInfo.contract]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -19,7 +46,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/sessions" element={<SessionList />} />
-        <Route path="/sessions/:sessionId" element={<Session />} />
+        <Route path="/sessions/create" element={<CreateSession />} />
         <Route path="/users" element={<UserList />} />
         <Route path="/users/:userId" element={<User />} />
       </Routes>

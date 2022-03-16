@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Layout from '../../components/Layout';
 import './SessionList.scss';
+import { useAppInfo } from '../../AppContext';
+import { ROLE } from '../../constants';
+import { useNavigate } from 'react-router-dom';
 
 const mockData = [
   {
@@ -28,10 +31,25 @@ function SessionList(props) {
   const [currentSession, setCurrentSession] = useState(null);
   const proposePriceEle = useRef();
   const finalPriceEle = useRef();
+  const { appInfo } = useAppInfo();
+  const isAdmin = appInfo.role === ROLE.ADMIN;
+  const navigate = useNavigate();
 
   useEffect(() => {
     setSessions(mockData);
-  }, []);
+    //call to get list session
+
+    async function fetchSessions() {
+      const { accounts, contract } = appInfo;
+      if (contract) {
+        const sessions =  await contract.methods.getSessions().call({ from: accounts[0] });
+        console.log('sessions', sessions)
+      }
+    }
+
+    fetchSessions();
+ 
+  }, [appInfo]);
 
   const renderImages = (images) => {
     return images.map((img, i) => (
@@ -66,6 +84,7 @@ function SessionList(props) {
       {!Boolean(currentSession) && (
         <div className="sessions">
           <h1 className="sessions__title">Session list page here</h1>
+          {isAdmin && <button onClick={() => navigate('create')}>Add new session</button>}
           <table className="sessions__table">
             <thead>
               <tr>
