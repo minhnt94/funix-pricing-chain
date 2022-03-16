@@ -1,36 +1,29 @@
 import React, { useEffect } from 'react';
 import './Login.scss';
 import { useNavigate } from 'react-router-dom';
-import { useContract } from '../../AppContext'
+import { useAppInfo } from '../../AppContext';
 
 function Login(props) {
   const navigate = useNavigate();
-  const value = useContract();
+  const { appInfo, setAppInfo } = useAppInfo();
 
-  useEffect(() => {
-    // check if user already connect to metamask
-    // then check current account existed or not
-    // then redirect to register page
-    // or redirect to session
-    // if(isRegistered) {
-    //   navigate('/sessionList')
-    // } else {
-    //   navigate('/register')
-    // }
-
-    console.log('value in login', value)
-  }, [value]);
-
-  const handleClick = () => {
-    // TODO: connect meta mask
-    // then redirect to register page
-    // or redirect to session list
-    const isRegistered = false;
-    
-    if(isRegistered) {
-      navigate('/sessions')
-    } else {
-      navigate('/register')
+  const handleClick = async () => {
+    const { accounts, contract } = appInfo;
+    if (contract) {
+      const role = await contract.methods.checkRole().call({ from: accounts[0]});
+      setAppInfo((prev) => {
+        return {
+          ...prev,
+          role,
+        };
+      });
+      console.log('role', role)
+      if (+role === 0) {
+        // case unregister
+        navigate('/register');
+      } else {
+        navigate('/sessions');
+      }
     }
   };
 

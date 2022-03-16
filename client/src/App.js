@@ -12,27 +12,26 @@ import Register from './screens/Register';
 import SessionList from './screens/SessionList';
 import UserList from './screens/UserList';
 import User from './screens/User';
-import AppContextProvider, { useContract, AppContext } from './AppContext';
+import AppContextProvider, { useAppInfo, AppContext } from './AppContext';
 
 function App() {
-  const [storageValue, setStorageValue] = useState(null);
-  const [web3, setWeb3] = useState(null);
-  const [accounts, setAccounts] = useState(null);
-  const [contract, setContract] = useState(null);
+  // const [storageValue, setStorageValue] = useState(null);
+  // const [web3, setWeb3] = useState(null);
+  // const [accounts, setAccounts] = useState(null);
+  // const [contract, setContract] = useState(null);
+  // const { appInfo, setAppInfo } = useAppInfo();
 
-  // const { contractInfo, setContractInfo } = useContract();
-
-  const { contractInfo, setContractInfo } = useContext(AppContext);
+  const { appInfo } = useContext(AppContext);
 
   useEffect(() => {
-    console.log('contractInfo', contractInfo);
-  }, [contractInfo, setContractInfo]);
+    console.log('appInfo', appInfo);
+  }, [appInfo]);
 
   const inputRef = useRef(null);
 
   // useEffect(() => {
   //   async function init() {
-  //     const { accounts, contract } = contractInfo;
+  //     const { accounts, contract } = appInfo;
   //     // setWeb3(web3);
   //     // setAccounts(accounts);
   //     // setContract(instance);
@@ -46,37 +45,33 @@ function App() {
   //   };
 
   //   init();
-  // }, [contractInfo.accounts]);
+  // }, [appInfo.accounts]);
 
-  const handleClick = async (e) => {
-    await contract.methods
-      .set(+inputRef.current.value)
-      .send({ from: accounts[0] });
+  // const handleClick = async (e) => {
+  //   await contract.methods
+  //     .set(+inputRef.current.value)
+  //     .send({ from: accounts[0] });
 
-    const response = await contract.methods.get().call();
+  //   const response = await contract.methods.get().call();
 
-    // Update state with the result.
-    setStorageValue(response);
-  };
+  //   // Update state with the result.
+  //   setStorageValue(response);
+  // };
 
   // if (!web3) return <div>Loading Web3, accounts, and contract...</div>;
 
   return (
-    <AppContextProvider>
-      <h1>{storageValue}</h1>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/sessions" element={<SessionList />} />
-          <Route path="/sessions/:sessionId" element={<Session />} />
-          <Route path="/users" element={<UserList />} />
-          <Route path="/users/:userId" element={<User />} />
-        </Routes>
-      </BrowserRouter>
-      {accounts}
-    </AppContextProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/sessions" element={<SessionList />} />
+        <Route path="/sessions/:sessionId" element={<Session />} />
+        <Route path="/users" element={<UserList />} />
+        <Route path="/users/:userId" element={<User />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

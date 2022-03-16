@@ -152,5 +152,11 @@ contract Main is Admin {
         return participantMap[account].account != address(0);
     }
 
+    function checkRole() public view returns (uint256) {
+        if (checkAdmin() == true) return 1;
+        if (signIn() == true) return 2;
+        return 0;
+    }
+
     receive() external payable {}
 }

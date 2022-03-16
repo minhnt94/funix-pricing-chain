@@ -1,26 +1,27 @@
 import React, { useState, useEffect, useContext } from 'react';
 import getWeb3 from './getWeb3';
 import SimpleStorageContract from './contracts/SimpleStorage.json';
+import MainContract from './contracts/Main.json';
 
 const defaultContract = {
   web3: null,
   contract: null,
   accounts: [],
-  isAdmin: false,
+  role: 0,
 };
 
 export const AppContext = React.createContext({
-  contractInfo: defaultContract,
-  setContractInfo: () => {},
+  appInfo: defaultContract,
+  setAppInfo: () => {},
 });
 
-export const useContract = () => {
-  const { contractInfo, setContractInfo } = useContext(AppContext);
-  return { contractInfo, setContractInfo };
+export const useAppInfo = () => {
+  const { appInfo, setAppInfo } = useContext(AppContext);
+  return { appInfo, setAppInfo };
 }
 
 export default function AppContextProvider({ children }) {
-  const [contractInfo, setContractInfo] = useState(defaultContract);
+  const [appInfo, setAppInfo] = useState(defaultContract);
 
   useEffect(function () {
     async function init() {
@@ -33,21 +34,17 @@ export default function AppContextProvider({ children }) {
 
         // Get the contract instance.
         const networkId = await web3.eth.net.getId();
-        const deployedNetwork = SimpleStorageContract.networks[networkId];
+        const deployedNetwork = MainContract.networks[networkId];
         const instance = new web3.eth.Contract(
-          SimpleStorageContract.abi,
+          MainContract.abi,
           deployedNetwork && deployedNetwork.address
         );
 
-        console.log('accounts', accounts)
-        console.log('web3', web3)
-        console.log('contract', instance)
-
-        setContractInfo({
+        setAppInfo({
           web3,
           contract: instance,
           accounts,
-          isAdmin: false
+          role: 0
         });
       } catch (error) {
         // Catch any errors for any of the above operations.
@@ -62,7 +59,7 @@ export default function AppContextProvider({ children }) {
   }, []);
 
   return (
-    <AppContext.Provider value={{ contractInfo, setContractInfo }}>
+    <AppContext.Provider value={{ appInfo, setAppInfo }}>
       {children}
     </AppContext.Provider>
   );

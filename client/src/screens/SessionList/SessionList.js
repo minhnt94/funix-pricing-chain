@@ -99,7 +99,7 @@ function SessionList(props) {
                   <td>{session.proposePrice}</td>
                   <td>{session.finalPrice}</td>
                   <td>
-                    <button type="button" onClick={handleViewDetail(index)}>
+                    <button type="button" onClick={() => handleViewDetail(index)}>
                       View detail
                     </button>
                   </td>
