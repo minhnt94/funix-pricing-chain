@@ -52,7 +52,7 @@ function CreateSession(props) {
           </div>
           <div className="form__block">
             <label className="form__text">Images:</label>
-            <button onClick={addImages}>+</button>
+            <button onClick={addImages} type="button">+</button>
             {fields.map((field, index) => (
               <div key={field.id}>
                 <input key={field.id} {...register(`images.${index}`)} />

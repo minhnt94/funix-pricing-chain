@@ -17,11 +17,6 @@ interface IMain {
 }
 
 contract Session {
-    enum SessionState {
-        OnGoing,
-        Closed
-    }
-
     address parentContract;
     string name;
     string description;
@@ -151,6 +146,30 @@ contract Session {
         Participant memory participant = IMain(parentContract)
             .getParticipantDetail(_account);
         return (participant.deviation, participant.sessionsCount);
+    }
+
+    function getInfo()
+        public
+        view
+        returns (
+            string memory,
+            string memory,
+            string[] memory,
+            uint256,
+            SessionState,
+            uint256,
+            uint256
+        )
+    {
+        return (
+            name,
+            description,
+            images,
+            timeout,
+            state,
+            proposePrice,
+            finalPrice
+        );
     }
 
     function abs(int256 x) private pure returns (uint256) {

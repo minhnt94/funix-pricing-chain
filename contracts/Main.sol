@@ -57,8 +57,34 @@ contract Main is Admin {
         sessionList[_sessionIndex].updateFinalPrice(_finalPrice);
     }
 
-    function getSessions() public view returns (Session[] memory) {
-        return sessionList;
+    function getSessions() public view returns (SessionInfo[] memory) {
+        uint256 i;
+        SessionInfo[] memory result = new SessionInfo[](sessionIndex);
+
+        for (i = 0; i < sessionIndex; i++) {
+            Session currentSession = sessionList[i];
+            (
+                string memory name,
+                string memory description,
+                string[] memory images,
+                uint256 timeout,
+                SessionState state,
+                uint256 proposePrice,
+                uint256 finalPrice
+            ) = currentSession.getInfo();
+            SessionInfo memory info = SessionInfo(
+                name,
+                description,
+                images,
+                timeout,
+                state,
+                proposePrice,
+                finalPrice
+            );
+            result[i] = info;
+        }
+
+        return result;
     }
 
     function updateSession(

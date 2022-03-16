@@ -16,3 +16,18 @@ struct ParticipantPropose {
     uint256 price;
     uint256 index;
 }
+
+enum SessionState {
+    OnGoing,
+    Closed
+}
+
+struct SessionInfo {
+    string name;
+    string description;
+    string[] images;
+    uint256 timeout;
+    SessionState state;
+    uint256 proposePrice;
+    uint256 finalPrice;
+}
