@@ -82,7 +82,7 @@ contract Session {
         uint256 i;
 
         // update deviation of each participant that has join this session.
-        for (i = 0; i <= proposeIndex; i++) {
+        for (i = 0; i < proposeIndex; i++) {
             ParticipantPropose memory proposeInfo = proposeList[i];
             address currentParticipant = proposeInfo.participantAddress;
             (
@@ -106,14 +106,14 @@ contract Session {
         public
         onlyParentContract
     {
-        if (proposeMap[_participant].participantAddress != address(0)) {
+        if (proposeMap[_participant].participantAddress == address(0)) {
             // new participant
             ParticipantPropose memory propose = ParticipantPropose(
                 _participant,
                 _price,
                 proposeIndex
             );
-            proposeList[proposeIndex] = propose;
+            proposeList.push(propose);
             proposeMap[_participant] = propose;
             proposeIndex++;
             IMain(parentContract).increaseParticipantSessionCount(_participant);
@@ -125,18 +125,24 @@ contract Session {
 
     function calculateProposePrice() internal {
         uint256 i;
-        uint256 totalDeviation;
-        uint256 topValue;
 
-        for (i = 0; i <= proposeIndex; i++) {
-            ParticipantPropose memory proposeInfo = proposeList[i];
-            address currentParticipant = proposeInfo.participantAddress;
-            (uint256 deviation, ) = getParticpantInfo(currentParticipant);
-            totalDeviation += deviation;
-            topValue += (proposeInfo.price * (100 - deviation));
+        if (proposeIndex == 0) {
+            proposePrice = 0;
+        } else {
+            uint256 totalDeviation;
+            uint256 topValue;
+
+            for (i = 0; i < proposeIndex; i++) {
+                ParticipantPropose memory proposeInfo = proposeList[i];
+                address currentParticipant = proposeInfo.participantAddress;
+                (uint256 deviation, ) = getParticpantInfo(currentParticipant);
+                totalDeviation += deviation;
+                topValue += (proposeInfo.price * (100 - deviation));
+            }
+
+            // proposePrice = 1;
+            proposePrice = topValue / ((100 * proposeIndex) - totalDeviation);
         }
-
-        proposePrice = topValue / totalDeviation;
     }
 
     function getParticpantInfo(address _account)
@@ -172,7 +178,17 @@ contract Session {
         );
     }
 
+    function getProposePrice() public view returns (uint256) {
+        return proposePrice;
+    }
+
     function abs(int256 x) private pure returns (uint256) {
         return x >= 0 ? uint256(x) : uint256(-x);
+    }
+
+    function testCross(address _account) public returns (uint256, uint256) {
+        Participant memory participant = IMain(parentContract)
+            .getParticipantDetail(_account);
+        return (participant.deviation, participant.sessionsCount);
     }
 }

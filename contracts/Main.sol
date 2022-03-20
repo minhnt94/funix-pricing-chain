@@ -185,5 +185,17 @@ contract Main is Admin {
         return 0;
     }
 
+    function getSessionProposePrice(uint256 _sessionIndex)
+        public
+        view
+        returns (uint256)
+    {
+        return sessionList[_sessionIndex].getProposePrice();
+    }
+
+    function test(uint256 _sessionIndex) public returns (uint256, uint256) {
+        return sessionList[_sessionIndex].testCross(msg.sender);
+    }
+
     receive() external payable {}
 }
