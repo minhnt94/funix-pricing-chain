@@ -20,11 +20,6 @@ contract Main is Admin {
         _;
     }
 
-    // modifier isValidSession(uint index) {
-    //     require(sessionMap[index].parentContract == address(this),"Only valid session can call");
-    //     _;
-    // }
-
     constructor() {}
 
     function initSession(
@@ -54,7 +49,7 @@ contract Main is Admin {
         public
         isAdmin
     {
-        sessionList[_sessionIndex].updateFinalPrice(_finalPrice);
+        sessionList[_sessionIndex].setFinalPrice(_finalPrice);
     }
 
     function getSessions() public view returns (SessionInfo[] memory) {
@@ -110,7 +105,20 @@ contract Main is Admin {
         sessionList[_sessionIndex].submitPrice(msg.sender, _price);
     }
 
-    function getParticipantList() public view returns (Participant[] memory) {
+    function getSessionProposePrice(uint256 _sessionIndex)
+        public
+        view
+        returns (uint256)
+    {
+        return sessionList[_sessionIndex].getProposePrice();
+    }
+
+    function getParticipantList()
+        public
+        view
+        isAdmin
+        returns (Participant[] memory)
+    {
         return participantList;
     }
 
@@ -128,24 +136,21 @@ contract Main is Admin {
         participantIndex++;
     }
 
-    function getParticipantDetail(address _account)
+    function getParticipantDetail(address _participantAddr)
         public
         view
         returns (Participant memory)
     {
-        return participantMap[_account];
+        return participantMap[_participantAddr];
     }
 
     function getCurrentParticiapntDetail()
         public
         view
+        isNotAdmin
         returns (Participant memory)
     {
         return getParticipantDetail(msg.sender);
-    }
-
-    function signIn() public view returns (bool) {
-        return isSignIn(msg.sender);
     }
 
     function updateParticipantInfo(string memory _email, string memory _name)
@@ -161,22 +166,8 @@ contract Main is Admin {
         participantList[participantMap[msg.sender].index].name = _name;
     }
 
-    function increaseParticipantSessionCount(address _account) public {
-        uint256 newCount = participantMap[_account].sessionsCount + 1;
-        participantMap[_account].sessionsCount = newCount;
-        participantList[participantMap[_account].index]
-            .sessionsCount = newCount;
-    }
-
-    function updateParticipantDeviation(address _account, uint256 _deviation)
-        public
-    {
-        participantMap[_account].deviation = _deviation;
-        participantList[participantMap[_account].index].deviation = _deviation;
-    }
-
-    function isSignIn(address account) public view returns (bool) {
-        return participantMap[account].account != address(0);
+    function isSignIn(address _account) public view returns (bool) {
+        return participantMap[_account].account != address(0);
     }
 
     function checkRole() public view returns (uint256) {
@@ -185,16 +176,26 @@ contract Main is Admin {
         return 0;
     }
 
-    function getSessionProposePrice(uint256 _sessionIndex)
-        public
-        view
-        returns (uint256)
-    {
-        return sessionList[_sessionIndex].getProposePrice();
+    function signIn() internal view returns (bool) {
+        return isSignIn(msg.sender);
     }
 
-    function test(uint256 _sessionIndex) public returns (uint256, uint256) {
-        return sessionList[_sessionIndex].testCross(msg.sender);
+    function increaseParticipantSessionCount(address _participantAddr)
+        external
+    {
+        uint256 newCount = participantMap[_participantAddr].sessionsCount + 1;
+        participantMap[_participantAddr].sessionsCount = newCount;
+        participantList[participantMap[_participantAddr].index]
+            .sessionsCount = newCount;
+    }
+
+    function updateParticipantDeviation(
+        address _participantAddr,
+        uint256 _deviation
+    ) external {
+        participantMap[_participantAddr].deviation = _deviation;
+        participantList[participantMap[_participantAddr].index]
+            .deviation = _deviation;
     }
 
     receive() external payable {}
