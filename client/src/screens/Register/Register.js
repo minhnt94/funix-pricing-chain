@@ -30,7 +30,7 @@ function Register(props) {
     <div className="register container">
       <h1>Register</h1>
       <div className="row">
-        <div className="col-4">
+        <div className="col-6">
           <form
             className="register__form form"
             onSubmit={handleSubmit(onSubmit)}

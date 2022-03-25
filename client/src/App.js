@@ -8,6 +8,8 @@ import CreateSession from './screens/CreateSession';
 import UserList from './screens/UserList';
 import User from './screens/User';
 import { useAppInfo } from './AppContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { appInfo, setAppInfo } = useAppInfo();
@@ -26,7 +28,7 @@ function App() {
           };
         });
       }
-    };
+    }
 
     checkUser();
   }, [appInfo.contract]);
@@ -42,6 +44,14 @@ function App() {
         <Route path="/users" element={<UserList />} />
         <Route path="/users/:userId" element={<User />} />
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+      />
     </BrowserRouter>
   );
 }

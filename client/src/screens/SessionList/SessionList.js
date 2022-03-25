@@ -5,10 +5,13 @@ import { useAppInfo } from '../../AppContext';
 import { ROLE, STATUS } from '../../constants';
 import { useNavigate } from 'react-router-dom';
 import { useCheckUser } from '../../hooks/useCheckUser';
+import clsx from 'clsx';
+import { toast } from 'react-toastify';
 
 function SessionList() {
   const [sessions, setSessions] = useState([]);
   const [currentSession, setCurrentSession] = useState(null);
+  const [triggerReload, setTriggerReload] = useState(false);
   const proposePriceEle = useRef();
   const finalPriceEle = useRef();
   const { appInfo } = useAppInfo();
@@ -29,7 +32,7 @@ function SessionList() {
     }
 
     fetchSessions();
-  }, [appInfo]);
+  }, [appInfo, triggerReload]);
 
   const renderImages = (images) => {
     return images.map((img, i) => (
@@ -43,16 +46,18 @@ function SessionList() {
 
   const handleBack = () => {
     setCurrentSession(null);
+    setTriggerReload((reload) => !reload);
   };
 
   const handleSubmitProposePrice = async () => {
     const proposePrice = parseInt(proposePriceEle.current.value);
     const sessionId = currentSession.id;
-    console.log(sessionId, proposePrice);
 
     await contract.methods
       .submitPrice(sessionId, proposePrice)
       .send({ from: accounts[0] });
+    handleBack();
+    toast.success('Submit propose price successfully');
   };
 
   const handleSubmitFinalPrice = async () => {
@@ -62,11 +67,15 @@ function SessionList() {
     await contract.methods
       .setFinalPrice(sessionId, finalPrice)
       .send({ from: accounts[0] });
+
+    toast.success('Submit final price successfully');
+    handleBack();
   };
 
   const handleCloseSession = async () => {
     const sessionId = currentSession.id;
     await contract.methods.closeSession(sessionId).send({ from: accounts[0] });
+    toast.success('Close session successfully');
     handleBack();
   };
 
@@ -87,9 +96,16 @@ function SessionList() {
         <div className="sessions container">
           <h1 className="mb-5">Session list</h1>
           {isAdmin && (
-            <button onClick={() => navigate('create')}>Add new session</button>
+            <div className="d-flex justify-content-end mb-3">
+              <button
+                className="btn btn-primary"
+                onClick={() => navigate('create')}
+              >
+                Add new session
+              </button>
+            </div>
           )}
-          <table className="table table-striped table-hover">
+          <table className="table table-hover">
             <thead>
               <tr>
                 <th>No</th>
@@ -109,17 +125,15 @@ function SessionList() {
                   <td>{renderImages(session.images)}</td>
                   <td>{session.name}</td>
                   <td>
-                    {+session.state === STATUS.CLOSED && (
-                      <span className="badge bg-danger">
-                        {getStatusText(session.state)}
-                      </span>
-                    )}
-
-                    {+session.state !== STATUS.CLOSED && (
-                      <span className="badge bg-success">
-                        {getStatusText(session.state)}
-                      </span>
-                    )}
+                    <span
+                      className={clsx({
+                        badge: true,
+                        'bg-danger': +session.state === STATUS.CLOSED,
+                        'bg-success': +session.state !== STATUS.CLOSED,
+                      })}
+                    >
+                      {getStatusText(session.state)}
+                    </span>
                   </td>
                   <td>{session.description}</td>
                   {/* <td>{session.proposePrice}</td> */}
@@ -142,53 +156,105 @@ function SessionList() {
         </div>
       )}
       {Boolean(currentSession) && (
-        <div className="session">
-          <button onClick={handleBack}>Back to list</button>
+        <div className="session container">
+          <button className="btn btn-secondary mb-4" onClick={handleBack}>
+            Back to list
+          </button>
+
           <h1 className="session__title">Session detail:</h1>
-          <div className="info">
-            <div className="info__name">
-              Name: <span>{currentSession.name}</span>
-            </div>
-            <div className="info__images">
-              {currentSession.images.map((img, index) => (
-                <img key={index} src={img} className="info__image" />
-              ))}
-            </div>
-            <div className="info__description">
-              Description: <span>{currentSession.description}</span>
-            </div>
-            <div className="info__state">
-              Status: <span>{getStatusText(currentSession.state)}</span>
-            </div>
-            {+currentSession.state === STATUS.ON_GOING && !isAdmin && (
-              <div className="info__propose-price">
-                <label>Propose price:</label>
-                <input ref={proposePriceEle} />
-                <button onClick={handleSubmitProposePrice}>
-                  Submit propose price
-                </button>
-              </div>
-            )}
 
-            {+currentSession.state === STATUS.CLOSED && isAdmin && (
-              <div className="info__propose-price">
-                <label>Propose price:</label>
-                <span>{currentSession.proposePrice}</span>
+          <div className="row">
+            <div className="col-5">
+              <div className="info__images">
+                {currentSession.images.map((img, index) => (
+                  <img key={index} src={img} className="info__image" />
+                ))}
               </div>
-            )}
+            </div>
+            <div className="col-7">
+              <div className="info">
+                <div className="info__name">
+                  <span className="fs-5 fw-bold">Name:</span>{' '}
+                  <span>{currentSession.name}</span>
+                </div>
 
-            {+currentSession.state === STATUS.CLOSED && isAdmin && (
-              <div className="info__final-price">
-                <label>Final price:</label>
-                <input ref={finalPriceEle} />
-                <button onClick={handleSubmitFinalPrice}>
-                  Set final price
-                </button>
+                <div className="info__description">
+                  <span className="fs-5 fw-bold">Description:</span>
+                  <span>{currentSession.description}</span>
+                </div>
+                <div className="info__state align-middle d-flex align-items-center">
+                  <span className="fs-5 fw-bold">Status:</span>{' '}
+                  <span
+                    className={clsx({
+                      badge: true,
+                      'bg-danger': +currentSession.state === STATUS.CLOSED,
+                      'bg-success': +currentSession.state !== STATUS.CLOSED,
+                    })}
+                  >
+                    {getStatusText(currentSession.state)}
+                  </span>
+                </div>
+                {+currentSession.state === STATUS.ON_GOING && !isAdmin && (
+                  <div className="info__propose-price">
+                    <label className="fs-5 fw-bold">Propose price:</label>
+                    <input ref={proposePriceEle} />
+                    <button
+                      className="btn btn-primary ms-3"
+                      onClick={handleSubmitProposePrice}
+                    >
+                      Submit propose price
+                    </button>
+                  </div>
+                )}
+
+                {+currentSession.state === STATUS.CLOSED && isAdmin && (
+                  <div className="info__propose-price">
+                    <label className="fs-5 fw-bold">Propose price:</label>
+                    <span>{currentSession.proposePrice}</span>
+                  </div>
+                )}
+
+                {+currentSession.state === STATUS.CLOSED && isAdmin && (
+                  <div className="info__final-price">
+                    {+currentSession.finalPrice > 0 && (
+                      <>
+                        <label className="fs-5 fw-bold">Final price:</label>
+                        <span>{currentSession.finalPrice}</span>
+                      </>
+                    )}
+
+                    {+currentSession.finalPrice === 0 && (
+                      <div className="row mt-3">
+                        <div className="col-6">
+                          <input
+                            ref={finalPriceEle}
+                            className="form-control"
+                            id="finalPriceFloating"
+                            placeholder="Enter final price"
+                          />
+                        </div>
+                        <div className="col-6">
+                          <button
+                            className="btn btn-primary"
+                            onClick={handleSubmitFinalPrice}
+                          >
+                            Set final price
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+                {+currentSession.state === STATUS.ON_GOING && isAdmin && (
+                  <button
+                    className="btn btn-warning mt-3"
+                    onClick={handleCloseSession}
+                  >
+                    Close session
+                  </button>
+                )}
               </div>
-            )}
-            {+currentSession.state === STATUS.ON_GOING && isAdmin && (
-              <button onClick={handleCloseSession}>Close session</button>
-            )}
+            </div>
           </div>
         </div>
       )}
