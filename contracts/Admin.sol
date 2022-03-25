@@ -12,6 +12,11 @@ contract Admin {
         _;
     }
 
+    modifier isNotAdmin() {
+        require(checkAdmin() == false, "Caller is Admin");
+        _;
+    }
+
     constructor() {
         admin = msg.sender;
         emit AdminSet(address(0), admin);
@@ -26,7 +31,7 @@ contract Admin {
         return admin;
     }
 
-    function checkAdmin() public view returns (bool) {
+    function checkAdmin() internal view returns (bool) {
         return msg.sender == admin;
     }
 }

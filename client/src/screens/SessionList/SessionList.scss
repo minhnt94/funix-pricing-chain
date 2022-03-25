@@ -1,14 +1,4 @@
 .sessions {
-  &__table {
-    border-collapse: collapse;
-
-    th,
-    td {
-      border: 1px solid grey;
-      padding: 5px;
-    }
-  }
-
   .session-info {
     &__img {
       width: 100%;

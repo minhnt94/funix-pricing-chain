@@ -22,19 +22,46 @@ function Register(props) {
     navigate('/sessions');
   };
 
+  const handleBack = () => {
+    navigate('/login');
+  };
+
   return (
-    <div className="register">
-      <form className="register__form form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="form__block">
-          <label className="form__text">Email</label>
-          <input className="form__input" {...register('email')} />
+    <div className="register container">
+      <h1>Register</h1>
+      <div className="row">
+        <div className="col-4">
+          <form
+            className="register__form form"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="mb-3">
+              <label for="email" class="form-label">
+                Email address
+              </label>
+              <input className="form-control" {...register('email')} />
+            </div>
+            <div className="form__block">
+              <label for="name" class="form-label">
+                Fullname
+              </label>
+              <input className="form-control" {...register('name')} />
+            </div>
+            <div className="mt-3">
+              <button type="submit" class="btn btn-primary">
+                Register
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary ms-3"
+                onClick={handleBack}
+              >
+                Back to login page
+              </button>
+            </div>
+          </form>
         </div>
-        <div className="form__block">
-          <label className="form__text">Fullname</label>
-          <input className="form__input" {...register('name')} />
-        </div>
-        <button type="submit">Register</button>
-      </form>
+      </div>
     </div>
   );
 }

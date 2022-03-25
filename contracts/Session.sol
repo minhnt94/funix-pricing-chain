@@ -4,18 +4,6 @@ pragma solidity >=0.8.0;
 
 import "./Type.sol";
 
-// Interface of Main contract to call from Session contract
-interface IMain {
-    function getParticipantDetail(address _session)
-        external
-        returns (Participant memory);
-
-    function updateParticipantDeviation(address _account, uint256 _deviation)
-        external;
-
-    function increaseParticipantSessionCount(address _account) external;
-}
-
 contract Session {
     address parentContract;
     string name;
@@ -63,8 +51,9 @@ contract Session {
 
     function isClosed() public view onlyParentContract returns (bool) {
         return
-            (state == SessionState.Closed) ||
-            (initTime + timeout) > block.timestamp;
+            timeout != 0 &&
+            ((state == SessionState.Closed) ||
+                (initTime + timeout) > block.timestamp);
     }
 
     function update(
@@ -77,12 +66,12 @@ contract Session {
         images = _images;
     }
 
-    function updateFinalPrice(uint256 _finalPrice) public onlyParentContract {
+    function setFinalPrice(uint256 _finalPrice) public onlyParentContract {
         finalPrice = _finalPrice;
         uint256 i;
 
         // update deviation of each participant that has join this session.
-        for (i = 0; i <= proposeIndex; i++) {
+        for (i = 0; i < proposeIndex; i++) {
             ParticipantPropose memory proposeInfo = proposeList[i];
             address currentParticipant = proposeInfo.participantAddress;
             (
@@ -102,49 +91,35 @@ contract Session {
         }
     }
 
-    function submitPrice(address _participant, uint256 _price)
+    function submitPrice(address _participantAddr, uint256 _price)
         public
         onlyParentContract
     {
-        if (proposeMap[_participant].participantAddress != address(0)) {
+        if (proposeMap[_participantAddr].participantAddress == address(0)) {
             // new participant
             ParticipantPropose memory propose = ParticipantPropose(
-                _participant,
+                _participantAddr,
                 _price,
                 proposeIndex
             );
-            proposeList[proposeIndex] = propose;
-            proposeMap[_participant] = propose;
+            proposeList.push(propose);
+            proposeMap[_participantAddr] = propose;
             proposeIndex++;
-            IMain(parentContract).increaseParticipantSessionCount(_participant);
+            IMain(parentContract).increaseParticipantSessionCount(
+                _participantAddr
+            );
         } else {
             //  existed participant
-            proposeMap[_participant].price = _price;
+            proposeMap[_participantAddr].price = _price;
         }
     }
 
-    function calculateProposePrice() internal {
-        uint256 i;
-        uint256 totalDeviation;
-        uint256 topValue;
-
-        for (i = 0; i <= proposeIndex; i++) {
-            ParticipantPropose memory proposeInfo = proposeList[i];
-            address currentParticipant = proposeInfo.participantAddress;
-            (uint256 deviation, ) = getParticpantInfo(currentParticipant);
-            totalDeviation += deviation;
-            topValue += (proposeInfo.price * (100 - deviation));
-        }
-
-        proposePrice = topValue / totalDeviation;
-    }
-
-    function getParticpantInfo(address _account)
+    function getParticpantInfo(address _participantAddr)
         public
         returns (uint256, uint256)
     {
         Participant memory participant = IMain(parentContract)
-            .getParticipantDetail(_account);
+            .getParticipantDetail(_participantAddr);
         return (participant.deviation, participant.sessionsCount);
     }
 
@@ -172,7 +147,35 @@ contract Session {
         );
     }
 
-    function abs(int256 x) private pure returns (uint256) {
+    function getProposePrice() public view returns (uint256) {
+        return proposePrice;
+    }
+
+    // internal function
+
+    function abs(int256 x) internal pure returns (uint256) {
         return x >= 0 ? uint256(x) : uint256(-x);
+    }
+
+    function calculateProposePrice() internal {
+        uint256 i;
+
+        if (proposeIndex == 0) {
+            proposePrice = 0;
+        } else {
+            uint256 totalDeviation;
+            uint256 topValue;
+
+            for (i = 0; i < proposeIndex; i++) {
+                ParticipantPropose memory proposeInfo = proposeList[i];
+                address currentParticipant = proposeInfo.participantAddress;
+                (uint256 deviation, ) = getParticpantInfo(currentParticipant);
+                totalDeviation += deviation;
+                topValue += (proposeInfo.price * (100 - deviation));
+            }
+
+            // proposePrice = 1;
+            proposePrice = topValue / ((100 * proposeIndex) - totalDeviation);
+        }
     }
 }

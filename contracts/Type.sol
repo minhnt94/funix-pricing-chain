@@ -32,3 +32,17 @@ struct SessionInfo {
     uint256 proposePrice;
     uint256 finalPrice;
 }
+
+// Interface of Main contract to call from Session contract
+interface IMain {
+    function getParticipantDetail(address _session)
+        external
+        returns (Participant memory);
+
+    function updateParticipantDeviation(
+        address _participantAddr,
+        uint256 _deviation
+    ) external;
+
+    function increaseParticipantSessionCount(address _participantAddr) external;
+}
