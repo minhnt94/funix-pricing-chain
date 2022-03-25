@@ -51,8 +51,9 @@ contract Session {
 
     function isClosed() public view onlyParentContract returns (bool) {
         return
-            (state == SessionState.Closed) ||
-            (initTime + timeout) > block.timestamp;
+            timeout != 0 &&
+            ((state == SessionState.Closed) ||
+                (initTime + timeout) > block.timestamp);
     }
 
     function update(
