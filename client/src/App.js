@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import './App.scss';
 import Login from './screens/Login';
 import Register from './screens/Register';
 import SessionList from './screens/SessionList';
@@ -20,19 +19,12 @@ function App() {
         const role = parseInt(
           await contract.methods.checkRole().call({ from: accounts[0] })
         );
-        console.log('role', role)
         setAppInfo((prev) => {
           return {
             ...prev,
             role,
           };
         });
-        // if (role === ROLE.UNREGISTER) {
-        //   // case unregister
-        //   navigate('/register');
-        // } else {
-        //   navigate('/sessions');
-        // }
       }
     };
 
