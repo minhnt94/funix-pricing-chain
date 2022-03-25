@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import getWeb3 from './getWeb3';
-import SimpleStorageContract from './contracts/SimpleStorage.json';
 import MainContract from './contracts/Main.json';
 
 const defaultContract = {

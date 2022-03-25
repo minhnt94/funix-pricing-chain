@@ -20,7 +20,6 @@ function CreateSession(props) {
   const onSubmit = async (data) => {
     const { accounts, contract } = appInfo;
     const { name, description, images, timeout } = data;
-    console.log(name, description, images, timeout);
     await contract.methods.initSession(name, description, images, timeout).send({ from: accounts[0] });
     backToList();
   };

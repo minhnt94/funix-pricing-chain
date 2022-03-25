@@ -4,8 +4,9 @@ import './SessionList.scss';
 import { useAppInfo } from '../../AppContext';
 import { ROLE, STATUS } from '../../constants';
 import { useNavigate } from 'react-router-dom';
+import { useCheckUser } from '../../hooks/useCheckUser';
 
-function SessionList(props) {
+function SessionList() {
   const [sessions, setSessions] = useState([]);
   const [currentSession, setCurrentSession] = useState(null);
   const proposePriceEle = useRef();
@@ -14,17 +15,15 @@ function SessionList(props) {
   const { accounts, contract } = appInfo;
   const isAdmin = appInfo.role === ROLE.ADMIN;
   const navigate = useNavigate();
+  useCheckUser();
 
   useEffect(() => {
-    // setSessions(mockData);
-    //call to get list session
-
     async function fetchSessions() {
       if (contract) {
         const sessions = await contract.methods
           .getSessions()
           .call({ from: accounts[0] });
-        // console.log('sessions', sessions)
+        console.log('sessions', sessions);
         setSessions(sessions);
       }
     }
@@ -34,7 +33,7 @@ function SessionList(props) {
 
   const renderImages = (images) => {
     return images.map((img, i) => (
-      <img key={i} src={img} className="session-info__img" />
+      <img key={i} src={img} className="session-info__img" alt="sesion-img" />
     ));
   };
 
@@ -49,7 +48,7 @@ function SessionList(props) {
   const handleSubmitProposePrice = async () => {
     const proposePrice = parseInt(proposePriceEle.current.value);
     const sessionId = currentSession.id;
-    console.log(sessionId, proposePrice)
+    console.log(sessionId, proposePrice);
 
     await contract.methods
       .submitPrice(sessionId, proposePrice)
@@ -57,8 +56,8 @@ function SessionList(props) {
   };
 
   const handleSubmitFinalPrice = async () => {
-    const finalPrice = finalPriceEle.current.value;
-    const sessionId = currentSession.id;
+    const finalPrice = +finalPriceEle.current.value;
+    const sessionId = +currentSession.id;
 
     await contract.methods
       .setFinalPrice(sessionId, finalPrice)
@@ -72,7 +71,7 @@ function SessionList(props) {
   };
 
   const getStatusText = (status) => {
-    switch (status) {
+    switch (+status) {
       case STATUS.ON_GOING:
         return 'On Going';
       case STATUS.CLOSED:
@@ -85,12 +84,12 @@ function SessionList(props) {
   return (
     <Layout>
       {!Boolean(currentSession) && (
-        <div className="sessions">
-          <h1 className="sessions__title">Session list page here</h1>
+        <div className="sessions container">
+          <h1 className="mb-5">Session list</h1>
           {isAdmin && (
             <button onClick={() => navigate('create')}>Add new session</button>
           )}
-          <table className="sessions__table">
+          <table className="table table-striped table-hover">
             <thead>
               <tr>
                 <th>No</th>
@@ -105,22 +104,35 @@ function SessionList(props) {
             </thead>
             <tbody>
               {sessions.map((session, index) => (
-                <tr className="session-info" key={index}>
+                <tr className="session-info align-middle" key={index}>
                   <td>{index + 1}</td>
                   <td>{renderImages(session.images)}</td>
                   <td>{session.name}</td>
-                  <td>{getStatusText(session.state)}</td>
+                  <td>
+                    {+session.state === STATUS.CLOSED && (
+                      <span className="badge bg-danger">
+                        {getStatusText(session.state)}
+                      </span>
+                    )}
+
+                    {+session.state !== STATUS.CLOSED && (
+                      <span className="badge bg-success">
+                        {getStatusText(session.state)}
+                      </span>
+                    )}
+                  </td>
                   <td>{session.description}</td>
                   {/* <td>{session.proposePrice}</td> */}
                   <td>
-                    {session.state === STATUS.CLOSED && session.finalPrice}
+                    {+session.state === STATUS.CLOSED && session.finalPrice}
                   </td>
                   <td>
                     <button
+                      className="btn btn-info"
                       type="button"
                       onClick={() => handleViewDetail(index)}
                     >
-                      View detail
+                      View
                     </button>
                   </td>
                 </tr>
@@ -148,7 +160,7 @@ function SessionList(props) {
             <div className="info__state">
               Status: <span>{getStatusText(currentSession.state)}</span>
             </div>
-            {currentSession.state == STATUS.ON_GOING && !isAdmin && (
+            {+currentSession.state === STATUS.ON_GOING && !isAdmin && (
               <div className="info__propose-price">
                 <label>Propose price:</label>
                 <input ref={proposePriceEle} />
@@ -158,16 +170,23 @@ function SessionList(props) {
               </div>
             )}
 
-            {currentSession.state == STATUS.CLOSED && isAdmin && (
+            {+currentSession.state === STATUS.CLOSED && isAdmin && (
+              <div className="info__propose-price">
+                <label>Propose price:</label>
+                <span>{currentSession.proposePrice}</span>
+              </div>
+            )}
+
+            {+currentSession.state === STATUS.CLOSED && isAdmin && (
               <div className="info__final-price">
                 <label>Final price:</label>
-                <input value={currentSession.finalPrice} ref={finalPriceEle} />
+                <input ref={finalPriceEle} />
                 <button onClick={handleSubmitFinalPrice}>
                   Set final price
                 </button>
               </div>
             )}
-            {currentSession.state == STATUS.ON_GOING && isAdmin && (
+            {+currentSession.state === STATUS.ON_GOING && isAdmin && (
               <button onClick={handleCloseSession}>Close session</button>
             )}
           </div>

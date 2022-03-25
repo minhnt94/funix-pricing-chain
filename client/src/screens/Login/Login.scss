@@ -1,4 +1,13 @@
 .login {
-  &__btn {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ebebeb;
+
+  &__btn-wrapper {
+    padding: 50px;
+    background: white;
   }
 }
