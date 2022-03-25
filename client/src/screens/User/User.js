@@ -21,7 +21,6 @@ function User(props) {
           .getCurrentParticipantDetail()
           .call({ from: accounts[0] });
 
-        console.log('participant', participant);
         setParticipant(participant);
         setValue('email', participant.email);
         setValue('name', participant.name);
