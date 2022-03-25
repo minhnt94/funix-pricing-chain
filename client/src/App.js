@@ -41,8 +41,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/sessions" element={<SessionList />} />
         <Route path="/sessions/create" element={<CreateSession />} />
-        <Route path="/users" element={<UserList />} />
-        <Route path="/users/:userId" element={<User />} />
+        <Route path="/participants" element={<UserList />} />
+        <Route path="/info" element={<User />} />
       </Routes>
       <ToastContainer
         position="top-right"

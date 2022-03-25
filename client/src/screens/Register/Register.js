@@ -53,7 +53,7 @@ function Register(props) {
               </button>
               <button
                 type="button"
-                class="btn btn-secondary ms-3"
+                className="btn btn-secondary ms-3"
                 onClick={handleBack}
               >
                 Back to login page

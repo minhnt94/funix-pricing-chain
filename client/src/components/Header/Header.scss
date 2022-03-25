@@ -1,0 +1,30 @@
+header {
+  nav {
+    ul {
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0;
+    }
+
+    li {
+      &:not(:first-child) {
+        margin-left: 15px;
+      }
+    }
+
+    a {
+      &,
+      &:focus,
+      &:hover,
+      &:visited {
+        color: white;
+        text-decoration: none;
+      }
+
+      &.active {
+        font-weight: bold;
+      }
+    }
+  }
+}
