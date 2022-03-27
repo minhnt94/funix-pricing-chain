@@ -118,7 +118,7 @@ contract Main is Admin {
             _email,
             _name,
             msg.sender,
-            1,
+            0,
             0,
             participantIndex
         );

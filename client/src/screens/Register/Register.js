@@ -36,19 +36,19 @@ function Register(props) {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="mb-3">
-              <label for="email" class="form-label">
+              <label htmlFor="email" className="form-label">
                 Email address
               </label>
               <input className="form-control" {...register('email')} />
             </div>
             <div className="form__block">
-              <label for="name" class="form-label">
+              <label htmlFor="name" className="form-label">
                 Fullname
               </label>
               <input className="form-control" {...register('name')} />
             </div>
             <div className="mt-3">
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" className="btn btn-primary">
                 Register
               </button>
               <button

@@ -16,7 +16,7 @@ contract Session {
     uint256 finalPrice;
 
     ParticipantPropose[] proposeList;
-    uint256 proposeIndex = 0;
+    uint256 proposeIndex;
     mapping(address => ParticipantPropose) proposeMap;
 
     SessionState state;
@@ -79,9 +79,8 @@ contract Session {
                 uint256 sessionsCount
             ) = getParticpantInfo(currentParticipant);
 
-            uint256 newDeviation = (abs(
-                int256(_finalPrice - proposeInfo.price)
-            ) / _finalPrice) * 100;
+            uint256 newDeviation = ((subAbs(_finalPrice, proposeInfo.price) *
+                100) / _finalPrice);
             uint256 updatedDeviation = ((currentDeviation * sessionsCount) +
                 newDeviation) / (sessionsCount + 1);
             IMain(parentContract).updateParticipantDeviation(
@@ -115,7 +114,7 @@ contract Session {
     }
 
     function getParticpantInfo(address _participantAddr)
-        public
+        internal
         returns (uint256, uint256)
     {
         Participant memory participant = IMain(parentContract)
@@ -153,8 +152,8 @@ contract Session {
 
     // internal function
 
-    function abs(int256 x) internal pure returns (uint256) {
-        return x >= 0 ? uint256(x) : uint256(-x);
+    function subAbs(uint256 a, uint256 b) internal pure returns (uint256) {
+        return a >= b ? a - b : b - a;
     }
 
     function calculateProposePrice() internal {
@@ -174,7 +173,6 @@ contract Session {
                 topValue += (proposeInfo.price * (100 - deviation));
             }
 
-            // proposePrice = 1;
             proposePrice = topValue / ((100 * proposeIndex) - totalDeviation);
         }
     }
