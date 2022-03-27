@@ -15,6 +15,15 @@ contract Main is Admin {
     mapping(address => Participant) private participantMap;
     uint256 participantIndex = 0;
 
+    event InitSession(uint256 indexed sessionIndex, string indexed name);
+    event Register(uint256 indexed participantIndex, string indexed email);
+    event SubmitPrice(
+        uint256 indexed sessionIndex,
+        address indexed from,
+        uint256 price
+    );
+    event SetFinalPrice(uint256 indexed sessionIndex, uint256 price);
+
     modifier isParticipant() {
         require(isSignIn(msg.sender), "Not allowed cause not signed in");
         _;
@@ -38,6 +47,7 @@ contract Main is Admin {
         );
         sessionList.push(session);
         sessionMap[sessionIndex] = session;
+        emit InitSession(sessionIndex, _name);
         sessionIndex++;
     }
 
@@ -49,6 +59,7 @@ contract Main is Admin {
         public
         isAdmin
     {
+        emit SetFinalPrice(_sessionIndex, _finalPrice);
         sessionList[_sessionIndex].setFinalPrice(_finalPrice);
     }
 
@@ -104,6 +115,7 @@ contract Main is Admin {
         );
         //require session is not closed.
 
+        emit SubmitPrice(_sessionIndex, msg.sender, _price);
         sessionList[_sessionIndex].submitPrice(msg.sender, _price);
     }
 
@@ -135,6 +147,7 @@ contract Main is Admin {
         );
         participantList.push(participant);
         participantMap[msg.sender] = participant;
+        emit Register(participantIndex, _email);
         participantIndex++;
     }
 
