@@ -31,6 +31,7 @@ struct SessionInfo {
     SessionState state;
     uint256 proposePrice;
     uint256 finalPrice;
+    ParticipantPropose[] proposeList;
 }
 
 // Interface of Main contract to call from Session contract

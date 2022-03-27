@@ -90,6 +90,13 @@ function SessionList() {
     }
   };
 
+  const getCurrentProposePrice = () => {
+    const proposeList = currentSession?.proposeList;
+    const currentPropose = proposeList.find(propose => propose.participantAddress === accounts[0])
+
+    return currentPropose
+  }
+
   return (
     <Layout>
       {!Boolean(currentSession) && (
@@ -182,6 +189,10 @@ function SessionList() {
                   <span className="fs-5 fw-bold">Description:</span>
                   <span>{currentSession.description}</span>
                 </div>
+                <div className="info__count">
+                  <span className="fs-5 fw-bold">Participant count:</span>
+                  <span>{currentSession.proposeList.length}</span>
+                </div>
                 <div className="info__state align-middle d-flex align-items-center">
                   <span className="fs-5 fw-bold">Status:</span>{' '}
                   <span
@@ -195,16 +206,23 @@ function SessionList() {
                   </span>
                 </div>
                 {+currentSession.state === STATUS.ON_GOING && !isAdmin && (
-                  <div className="info__propose-price">
-                    <label className="fs-5 fw-bold">Propose price:</label>
-                    <input ref={proposePriceEle} />
-                    <button
-                      className="btn btn-primary ms-3"
-                      onClick={handleSubmitProposePrice}
-                    >
-                      Submit propose price
-                    </button>
-                  </div>
+                  <>
+                    <div className="info__propose-price">
+                      <span className="fs-5 fw-bold">Last propose price:</span>
+                      <span>{getCurrentProposePrice()?.price}</span>
+                      
+                    </div>
+                    <div className="info__propose-price">
+                      <label className="fs-5 fw-bold">Propose price:</label>
+                      <input ref={proposePriceEle} />
+                      <button
+                        className="btn btn-primary ms-3"
+                        onClick={handleSubmitProposePrice}
+                      >
+                        Submit propose price
+                      </button>
+                    </div>
+                  </>
                 )}
 
                 {+currentSession.state === STATUS.CLOSED && isAdmin && (

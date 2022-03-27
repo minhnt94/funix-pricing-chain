@@ -65,7 +65,8 @@ contract Main is Admin {
                 uint256 timeout,
                 SessionState state,
                 uint256 proposePrice,
-                uint256 finalPrice
+                uint256 finalPrice,
+                ParticipantPropose[] memory proposeList
             ) = currentSession.getInfo();
             SessionInfo memory info = SessionInfo(
                 i,
@@ -75,7 +76,8 @@ contract Main is Admin {
                 timeout,
                 state,
                 proposePrice,
-                finalPrice
+                finalPrice,
+                proposeList
             );
             result[i] = info;
         }
@@ -105,11 +107,20 @@ contract Main is Admin {
         sessionList[_sessionIndex].submitPrice(msg.sender, _price);
     }
 
-    function getSessionProposePrice(uint256 _sessionIndex) public view returns (uint256) {
-        return  sessionList[_sessionIndex].getProposePrice();
+    function getSessionProposePrice(uint256 _sessionIndex)
+        public
+        view
+        returns (uint256)
+    {
+        return sessionList[_sessionIndex].getProposePrice();
     }
 
-    function getParticipantList() public view isAdmin returns (Participant[] memory) {
+    function getParticipantList()
+        public
+        view
+        isAdmin
+        returns (Participant[] memory)
+    {
         return participantList;
     }
 
@@ -144,19 +155,21 @@ contract Main is Admin {
         return getParticipantDetail(msg.sender);
     }
 
-    function updateParticipantInfo(address _participantAddr,string memory _email, string memory _name)
-        public
-        isAdmin
-    {
+    function updateParticipantInfo(
+        address _participantAddr,
+        string memory _email,
+        string memory _name
+    ) public isAdmin {
         participantMap[_participantAddr].email = _email;
         participantMap[_participantAddr].name = _name;
         participantList[participantMap[_participantAddr].index].email = _email;
         participantList[participantMap[_participantAddr].index].name = _name;
     }
 
-    function updateCurrentParticipantInfo(string memory _email, string memory _name)
-        public
-    {
+    function updateCurrentParticipantInfo(
+        string memory _email,
+        string memory _name
+    ) public {
         require(
             participantMap[msg.sender].account == msg.sender,
             "You are not allowed"
@@ -177,24 +190,26 @@ contract Main is Admin {
         return 0;
     }
 
-
-
     function signIn() internal view returns (bool) {
         return isSignIn(msg.sender);
     }
 
-    function increaseParticipantSessionCount(address _participantAddr) external {
+    function increaseParticipantSessionCount(address _participantAddr)
+        external
+    {
         uint256 newCount = participantMap[_participantAddr].sessionsCount + 1;
         participantMap[_participantAddr].sessionsCount = newCount;
         participantList[participantMap[_participantAddr].index]
             .sessionsCount = newCount;
     }
 
-    function updateParticipantDeviation(address _participantAddr, uint256 _deviation)
-        external
-    {
+    function updateParticipantDeviation(
+        address _participantAddr,
+        uint256 _deviation
+    ) public {
         participantMap[_participantAddr].deviation = _deviation;
-        participantList[participantMap[_participantAddr].index].deviation = _deviation;
+        participantList[participantMap[_participantAddr].index]
+            .deviation = _deviation;
     }
 
     receive() external payable {}

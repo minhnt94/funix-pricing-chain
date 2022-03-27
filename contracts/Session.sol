@@ -110,6 +110,7 @@ contract Session {
         } else {
             //  existed participant
             proposeMap[_participantAddr].price = _price;
+            proposeList[proposeMap[_participantAddr].index].price = _price;
         }
     }
 
@@ -132,7 +133,8 @@ contract Session {
             uint256,
             SessionState,
             uint256,
-            uint256
+            uint256,
+            ParticipantPropose[] memory
         )
     {
         return (
@@ -142,7 +144,8 @@ contract Session {
             timeout,
             state,
             proposePrice,
-            finalPrice
+            finalPrice,
+            proposeList
         );
     }
 
