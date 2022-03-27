@@ -49,11 +49,10 @@ contract Session {
         calculateProposePrice();
     }
 
-    function isClosed() public view onlyParentContract returns (bool) {
+    function isClosed() public view returns (bool) {
         return
-            timeout != 0 &&
-            ((state == SessionState.Closed) ||
-                (initTime + timeout) > block.timestamp);
+            state == SessionState.Closed ||
+            (timeout != 0 && (initTime + timeout) > block.timestamp);
     }
 
     function update(

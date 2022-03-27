@@ -98,27 +98,27 @@
     "absolutePath": "project:/contracts/Type.sol",
     "exportedSymbols": {
       "IMain": [
-        1281
+        1278
       ],
       "Participant": [
-        1227
+        1224
       ],
       "ParticipantPropose": [
-        1234
+        1231
       ],
       "SessionInfo": [
-        1260
+        1257
       ],
       "SessionState": [
-        1237
+        1234
       ]
     },
-    "id": 1282,
+    "id": 1279,
     "license": "GPL-3.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1214,
+        "id": 1211,
         "literals": [
           "solidity",
           ">=",
@@ -130,16 +130,16 @@
       },
       {
         "canonicalName": "Participant",
-        "id": 1227,
+        "id": 1224,
         "members": [
           {
             "constant": false,
-            "id": 1216,
+            "id": 1213,
             "mutability": "mutable",
             "name": "email",
             "nameLocation": "95:5:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "88:12:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -148,7 +148,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1215,
+              "id": 1212,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "88:6:5",
@@ -161,12 +161,12 @@
           },
           {
             "constant": false,
-            "id": 1218,
+            "id": 1215,
             "mutability": "mutable",
             "name": "name",
             "nameLocation": "113:4:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "106:11:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -175,7 +175,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1217,
+              "id": 1214,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "106:6:5",
@@ -188,12 +188,12 @@
           },
           {
             "constant": false,
-            "id": 1220,
+            "id": 1217,
             "mutability": "mutable",
             "name": "account",
             "nameLocation": "131:7:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "123:15:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -202,7 +202,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1219,
+              "id": 1216,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "123:7:5",
@@ -216,12 +216,12 @@
           },
           {
             "constant": false,
-            "id": 1222,
+            "id": 1219,
             "mutability": "mutable",
             "name": "deviation",
             "nameLocation": "152:9:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "144:17:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -230,7 +230,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1221,
+              "id": 1218,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "144:7:5",
@@ -243,12 +243,12 @@
           },
           {
             "constant": false,
-            "id": 1224,
+            "id": 1221,
             "mutability": "mutable",
             "name": "sessionsCount",
             "nameLocation": "175:13:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "167:21:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -257,7 +257,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1223,
+              "id": 1220,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "167:7:5",
@@ -270,12 +270,12 @@
           },
           {
             "constant": false,
-            "id": 1226,
+            "id": 1223,
             "mutability": "mutable",
             "name": "index",
             "nameLocation": "202:5:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "194:13:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -284,7 +284,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1225,
+              "id": 1222,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "194:7:5",
@@ -299,22 +299,22 @@
         "name": "Participant",
         "nameLocation": "70:11:5",
         "nodeType": "StructDefinition",
-        "scope": 1282,
+        "scope": 1279,
         "src": "63:147:5",
         "visibility": "public"
       },
       {
         "canonicalName": "ParticipantPropose",
-        "id": 1234,
+        "id": 1231,
         "members": [
           {
             "constant": false,
-            "id": 1229,
+            "id": 1226,
             "mutability": "mutable",
             "name": "participantAddress",
             "nameLocation": "252:18:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1234,
+            "scope": 1231,
             "src": "244:26:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -323,7 +323,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1228,
+              "id": 1225,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "244:7:5",
@@ -337,12 +337,12 @@
           },
           {
             "constant": false,
-            "id": 1231,
+            "id": 1228,
             "mutability": "mutable",
             "name": "price",
             "nameLocation": "284:5:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1234,
+            "scope": 1231,
             "src": "276:13:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -351,7 +351,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1230,
+              "id": 1227,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "276:7:5",
@@ -364,12 +364,12 @@
           },
           {
             "constant": false,
-            "id": 1233,
+            "id": 1230,
             "mutability": "mutable",
             "name": "index",
             "nameLocation": "303:5:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1234,
+            "scope": 1231,
             "src": "295:13:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -378,7 +378,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1232,
+              "id": 1229,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "295:7:5",
@@ -393,23 +393,23 @@
         "name": "ParticipantPropose",
         "nameLocation": "219:18:5",
         "nodeType": "StructDefinition",
-        "scope": 1282,
+        "scope": 1279,
         "src": "212:99:5",
         "visibility": "public"
       },
       {
         "canonicalName": "SessionState",
-        "id": 1237,
+        "id": 1234,
         "members": [
           {
-            "id": 1235,
+            "id": 1232,
             "name": "OnGoing",
             "nameLocation": "337:7:5",
             "nodeType": "EnumValue",
             "src": "337:7:5"
           },
           {
-            "id": 1236,
+            "id": 1233,
             "name": "Closed",
             "nameLocation": "350:6:5",
             "nodeType": "EnumValue",
@@ -423,16 +423,16 @@
       },
       {
         "canonicalName": "SessionInfo",
-        "id": 1260,
+        "id": 1257,
         "members": [
           {
             "constant": false,
-            "id": 1239,
+            "id": 1236,
             "mutability": "mutable",
             "name": "id",
             "nameLocation": "393:2:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "385:10:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -441,7 +441,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1238,
+              "id": 1235,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "385:7:5",
@@ -454,12 +454,12 @@
           },
           {
             "constant": false,
-            "id": 1241,
+            "id": 1238,
             "mutability": "mutable",
             "name": "name",
             "nameLocation": "408:4:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "401:11:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -468,7 +468,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1240,
+              "id": 1237,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "401:6:5",
@@ -481,12 +481,12 @@
           },
           {
             "constant": false,
-            "id": 1243,
+            "id": 1240,
             "mutability": "mutable",
             "name": "description",
             "nameLocation": "425:11:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "418:18:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -495,7 +495,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1242,
+              "id": 1239,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "418:6:5",
@@ -508,12 +508,12 @@
           },
           {
             "constant": false,
-            "id": 1246,
+            "id": 1243,
             "mutability": "mutable",
             "name": "images",
             "nameLocation": "451:6:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "442:15:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -523,7 +523,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 1244,
+                "id": 1241,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "442:6:5",
@@ -532,7 +532,7 @@
                   "typeString": "string"
                 }
               },
-              "id": 1245,
+              "id": 1242,
               "nodeType": "ArrayTypeName",
               "src": "442:8:5",
               "typeDescriptions": {
@@ -544,12 +544,12 @@
           },
           {
             "constant": false,
-            "id": 1248,
+            "id": 1245,
             "mutability": "mutable",
             "name": "timeout",
             "nameLocation": "471:7:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "463:15:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -558,7 +558,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1247,
+              "id": 1244,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "463:7:5",
@@ -571,33 +571,33 @@
           },
           {
             "constant": false,
-            "id": 1251,
+            "id": 1248,
             "mutability": "mutable",
             "name": "state",
             "nameLocation": "497:5:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "484:18:5",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_enum$_SessionState_$1237",
+              "typeIdentifier": "t_enum$_SessionState_$1234",
               "typeString": "enum SessionState"
             },
             "typeName": {
-              "id": 1250,
+              "id": 1247,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 1249,
+                "id": 1246,
                 "name": "SessionState",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 1237,
+                "referencedDeclaration": 1234,
                 "src": "484:12:5"
               },
-              "referencedDeclaration": 1237,
+              "referencedDeclaration": 1234,
               "src": "484:12:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_enum$_SessionState_$1237",
+                "typeIdentifier": "t_enum$_SessionState_$1234",
                 "typeString": "enum SessionState"
               }
             },
@@ -605,12 +605,12 @@
           },
           {
             "constant": false,
-            "id": 1253,
+            "id": 1250,
             "mutability": "mutable",
             "name": "proposePrice",
             "nameLocation": "516:12:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "508:20:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -619,7 +619,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1252,
+              "id": 1249,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "508:7:5",
@@ -632,12 +632,12 @@
           },
           {
             "constant": false,
-            "id": 1255,
+            "id": 1252,
             "mutability": "mutable",
             "name": "finalPrice",
             "nameLocation": "542:10:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "534:18:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -646,7 +646,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1254,
+              "id": 1251,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "534:7:5",
@@ -659,42 +659,42 @@
           },
           {
             "constant": false,
-            "id": 1259,
+            "id": 1256,
             "mutability": "mutable",
             "name": "proposeList",
             "nameLocation": "579:11:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "558:32:5",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_ParticipantPropose_$1234_storage_$dyn_storage_ptr",
+              "typeIdentifier": "t_array$_t_struct$_ParticipantPropose_$1231_storage_$dyn_storage_ptr",
               "typeString": "struct ParticipantPropose[]"
             },
             "typeName": {
               "baseType": {
-                "id": 1257,
+                "id": 1254,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 1256,
+                  "id": 1253,
                   "name": "ParticipantPropose",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1234,
+                  "referencedDeclaration": 1231,
                   "src": "558:18:5"
                 },
-                "referencedDeclaration": 1234,
+                "referencedDeclaration": 1231,
                 "src": "558:18:5",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_ParticipantPropose_$1234_storage_ptr",
+                  "typeIdentifier": "t_struct$_ParticipantPropose_$1231_storage_ptr",
                   "typeString": "struct ParticipantPropose"
                 }
               },
-              "id": 1258,
+              "id": 1255,
               "nodeType": "ArrayTypeName",
               "src": "558:20:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_ParticipantPropose_$1234_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_ParticipantPropose_$1231_storage_$dyn_storage_ptr",
                 "typeString": "struct ParticipantPropose[]"
               }
             },
@@ -704,7 +704,7 @@
         "name": "SessionInfo",
         "nameLocation": "367:11:5",
         "nodeType": "StructDefinition",
-        "scope": 1282,
+        "scope": 1279,
         "src": "360:233:5",
         "visibility": "public"
       },
@@ -715,9 +715,9 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1281,
+        "id": 1278,
         "linearizedBaseContracts": [
-          1281
+          1278
         ],
         "name": "IMain",
         "nameLocation": "665:5:5",
@@ -725,7 +725,7 @@
         "nodes": [
           {
             "functionSelector": "d716c549",
-            "id": 1268,
+            "id": 1265,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -733,17 +733,17 @@
             "nameLocation": "686:20:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1263,
+              "id": 1260,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1262,
+                  "id": 1259,
                   "mutability": "mutable",
                   "name": "_session",
                   "nameLocation": "715:8:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1268,
+                  "scope": 1265,
                   "src": "707:16:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -752,7 +752,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1261,
+                    "id": 1258,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "707:7:5",
@@ -768,38 +768,38 @@
               "src": "706:18:5"
             },
             "returnParameters": {
-              "id": 1267,
+              "id": 1264,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1266,
+                  "id": 1263,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1268,
+                  "scope": 1265,
                   "src": "759:18:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Participant_$1227_memory_ptr",
+                    "typeIdentifier": "t_struct$_Participant_$1224_memory_ptr",
                     "typeString": "struct Participant"
                   },
                   "typeName": {
-                    "id": 1265,
+                    "id": 1262,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 1264,
+                      "id": 1261,
                       "name": "Participant",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 1227,
+                      "referencedDeclaration": 1224,
                       "src": "759:11:5"
                     },
-                    "referencedDeclaration": 1227,
+                    "referencedDeclaration": 1224,
                     "src": "759:11:5",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Participant_$1227_storage_ptr",
+                      "typeIdentifier": "t_struct$_Participant_$1224_storage_ptr",
                       "typeString": "struct Participant"
                     }
                   },
@@ -808,7 +808,7 @@
               ],
               "src": "758:20:5"
             },
-            "scope": 1281,
+            "scope": 1278,
             "src": "677:102:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -816,7 +816,7 @@
           },
           {
             "functionSelector": "937f4a26",
-            "id": 1275,
+            "id": 1272,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -824,17 +824,17 @@
             "nameLocation": "794:26:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1273,
+              "id": 1270,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1270,
+                  "id": 1267,
                   "mutability": "mutable",
                   "name": "_participantAddr",
                   "nameLocation": "838:16:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1275,
+                  "scope": 1272,
                   "src": "830:24:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -843,7 +843,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1269,
+                    "id": 1266,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "830:7:5",
@@ -857,12 +857,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1272,
+                  "id": 1269,
                   "mutability": "mutable",
                   "name": "_deviation",
                   "nameLocation": "872:10:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1275,
+                  "scope": 1272,
                   "src": "864:18:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -871,7 +871,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1271,
+                    "id": 1268,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "864:7:5",
@@ -886,12 +886,12 @@
               "src": "820:68:5"
             },
             "returnParameters": {
-              "id": 1274,
+              "id": 1271,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "897:0:5"
             },
-            "scope": 1281,
+            "scope": 1278,
             "src": "785:113:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -899,7 +899,7 @@
           },
           {
             "functionSelector": "51650ecb",
-            "id": 1280,
+            "id": 1277,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -907,17 +907,17 @@
             "nameLocation": "913:31:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1278,
+              "id": 1275,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1277,
+                  "id": 1274,
                   "mutability": "mutable",
                   "name": "_participantAddr",
                   "nameLocation": "953:16:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1280,
+                  "scope": 1277,
                   "src": "945:24:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -926,7 +926,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1276,
+                    "id": 1273,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "945:7:5",
@@ -942,19 +942,19 @@
               "src": "944:26:5"
             },
             "returnParameters": {
-              "id": 1279,
+              "id": 1276,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "979:0:5"
             },
-            "scope": 1281,
+            "scope": 1278,
             "src": "904:76:5",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1282,
+        "scope": 1279,
         "src": "655:327:5",
         "usedErrors": []
       }
@@ -965,27 +965,27 @@
     "absolutePath": "project:/contracts/Type.sol",
     "exportedSymbols": {
       "IMain": [
-        1281
+        1278
       ],
       "Participant": [
-        1227
+        1224
       ],
       "ParticipantPropose": [
-        1234
+        1231
       ],
       "SessionInfo": [
-        1260
+        1257
       ],
       "SessionState": [
-        1237
+        1234
       ]
     },
-    "id": 1282,
+    "id": 1279,
     "license": "GPL-3.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1214,
+        "id": 1211,
         "literals": [
           "solidity",
           ">=",
@@ -997,16 +997,16 @@
       },
       {
         "canonicalName": "Participant",
-        "id": 1227,
+        "id": 1224,
         "members": [
           {
             "constant": false,
-            "id": 1216,
+            "id": 1213,
             "mutability": "mutable",
             "name": "email",
             "nameLocation": "95:5:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "88:12:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1015,7 +1015,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1215,
+              "id": 1212,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "88:6:5",
@@ -1028,12 +1028,12 @@
           },
           {
             "constant": false,
-            "id": 1218,
+            "id": 1215,
             "mutability": "mutable",
             "name": "name",
             "nameLocation": "113:4:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "106:11:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1042,7 +1042,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1217,
+              "id": 1214,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "106:6:5",
@@ -1055,12 +1055,12 @@
           },
           {
             "constant": false,
-            "id": 1220,
+            "id": 1217,
             "mutability": "mutable",
             "name": "account",
             "nameLocation": "131:7:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "123:15:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1069,7 +1069,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1219,
+              "id": 1216,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "123:7:5",
@@ -1083,12 +1083,12 @@
           },
           {
             "constant": false,
-            "id": 1222,
+            "id": 1219,
             "mutability": "mutable",
             "name": "deviation",
             "nameLocation": "152:9:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "144:17:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1097,7 +1097,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1221,
+              "id": 1218,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "144:7:5",
@@ -1110,12 +1110,12 @@
           },
           {
             "constant": false,
-            "id": 1224,
+            "id": 1221,
             "mutability": "mutable",
             "name": "sessionsCount",
             "nameLocation": "175:13:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "167:21:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1124,7 +1124,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1223,
+              "id": 1220,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "167:7:5",
@@ -1137,12 +1137,12 @@
           },
           {
             "constant": false,
-            "id": 1226,
+            "id": 1223,
             "mutability": "mutable",
             "name": "index",
             "nameLocation": "202:5:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1227,
+            "scope": 1224,
             "src": "194:13:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1151,7 +1151,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1225,
+              "id": 1222,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "194:7:5",
@@ -1166,22 +1166,22 @@
         "name": "Participant",
         "nameLocation": "70:11:5",
         "nodeType": "StructDefinition",
-        "scope": 1282,
+        "scope": 1279,
         "src": "63:147:5",
         "visibility": "public"
       },
       {
         "canonicalName": "ParticipantPropose",
-        "id": 1234,
+        "id": 1231,
         "members": [
           {
             "constant": false,
-            "id": 1229,
+            "id": 1226,
             "mutability": "mutable",
             "name": "participantAddress",
             "nameLocation": "252:18:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1234,
+            "scope": 1231,
             "src": "244:26:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1190,7 +1190,7 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 1228,
+              "id": 1225,
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "244:7:5",
@@ -1204,12 +1204,12 @@
           },
           {
             "constant": false,
-            "id": 1231,
+            "id": 1228,
             "mutability": "mutable",
             "name": "price",
             "nameLocation": "284:5:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1234,
+            "scope": 1231,
             "src": "276:13:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1218,7 +1218,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1230,
+              "id": 1227,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "276:7:5",
@@ -1231,12 +1231,12 @@
           },
           {
             "constant": false,
-            "id": 1233,
+            "id": 1230,
             "mutability": "mutable",
             "name": "index",
             "nameLocation": "303:5:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1234,
+            "scope": 1231,
             "src": "295:13:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1245,7 +1245,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1232,
+              "id": 1229,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "295:7:5",
@@ -1260,23 +1260,23 @@
         "name": "ParticipantPropose",
         "nameLocation": "219:18:5",
         "nodeType": "StructDefinition",
-        "scope": 1282,
+        "scope": 1279,
         "src": "212:99:5",
         "visibility": "public"
       },
       {
         "canonicalName": "SessionState",
-        "id": 1237,
+        "id": 1234,
         "members": [
           {
-            "id": 1235,
+            "id": 1232,
             "name": "OnGoing",
             "nameLocation": "337:7:5",
             "nodeType": "EnumValue",
             "src": "337:7:5"
           },
           {
-            "id": 1236,
+            "id": 1233,
             "name": "Closed",
             "nameLocation": "350:6:5",
             "nodeType": "EnumValue",
@@ -1290,16 +1290,16 @@
       },
       {
         "canonicalName": "SessionInfo",
-        "id": 1260,
+        "id": 1257,
         "members": [
           {
             "constant": false,
-            "id": 1239,
+            "id": 1236,
             "mutability": "mutable",
             "name": "id",
             "nameLocation": "393:2:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "385:10:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1308,7 +1308,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1238,
+              "id": 1235,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "385:7:5",
@@ -1321,12 +1321,12 @@
           },
           {
             "constant": false,
-            "id": 1241,
+            "id": 1238,
             "mutability": "mutable",
             "name": "name",
             "nameLocation": "408:4:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "401:11:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1335,7 +1335,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1240,
+              "id": 1237,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "401:6:5",
@@ -1348,12 +1348,12 @@
           },
           {
             "constant": false,
-            "id": 1243,
+            "id": 1240,
             "mutability": "mutable",
             "name": "description",
             "nameLocation": "425:11:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "418:18:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1362,7 +1362,7 @@
               "typeString": "string"
             },
             "typeName": {
-              "id": 1242,
+              "id": 1239,
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "418:6:5",
@@ -1375,12 +1375,12 @@
           },
           {
             "constant": false,
-            "id": 1246,
+            "id": 1243,
             "mutability": "mutable",
             "name": "images",
             "nameLocation": "451:6:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "442:15:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1390,7 +1390,7 @@
             },
             "typeName": {
               "baseType": {
-                "id": 1244,
+                "id": 1241,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "442:6:5",
@@ -1399,7 +1399,7 @@
                   "typeString": "string"
                 }
               },
-              "id": 1245,
+              "id": 1242,
               "nodeType": "ArrayTypeName",
               "src": "442:8:5",
               "typeDescriptions": {
@@ -1411,12 +1411,12 @@
           },
           {
             "constant": false,
-            "id": 1248,
+            "id": 1245,
             "mutability": "mutable",
             "name": "timeout",
             "nameLocation": "471:7:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "463:15:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1425,7 +1425,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1247,
+              "id": 1244,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "463:7:5",
@@ -1438,33 +1438,33 @@
           },
           {
             "constant": false,
-            "id": 1251,
+            "id": 1248,
             "mutability": "mutable",
             "name": "state",
             "nameLocation": "497:5:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "484:18:5",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_enum$_SessionState_$1237",
+              "typeIdentifier": "t_enum$_SessionState_$1234",
               "typeString": "enum SessionState"
             },
             "typeName": {
-              "id": 1250,
+              "id": 1247,
               "nodeType": "UserDefinedTypeName",
               "pathNode": {
-                "id": 1249,
+                "id": 1246,
                 "name": "SessionState",
                 "nodeType": "IdentifierPath",
-                "referencedDeclaration": 1237,
+                "referencedDeclaration": 1234,
                 "src": "484:12:5"
               },
-              "referencedDeclaration": 1237,
+              "referencedDeclaration": 1234,
               "src": "484:12:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_enum$_SessionState_$1237",
+                "typeIdentifier": "t_enum$_SessionState_$1234",
                 "typeString": "enum SessionState"
               }
             },
@@ -1472,12 +1472,12 @@
           },
           {
             "constant": false,
-            "id": 1253,
+            "id": 1250,
             "mutability": "mutable",
             "name": "proposePrice",
             "nameLocation": "516:12:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "508:20:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1486,7 +1486,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1252,
+              "id": 1249,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "508:7:5",
@@ -1499,12 +1499,12 @@
           },
           {
             "constant": false,
-            "id": 1255,
+            "id": 1252,
             "mutability": "mutable",
             "name": "finalPrice",
             "nameLocation": "542:10:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "534:18:5",
             "stateVariable": false,
             "storageLocation": "default",
@@ -1513,7 +1513,7 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1254,
+              "id": 1251,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
               "src": "534:7:5",
@@ -1526,42 +1526,42 @@
           },
           {
             "constant": false,
-            "id": 1259,
+            "id": 1256,
             "mutability": "mutable",
             "name": "proposeList",
             "nameLocation": "579:11:5",
             "nodeType": "VariableDeclaration",
-            "scope": 1260,
+            "scope": 1257,
             "src": "558:32:5",
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_array$_t_struct$_ParticipantPropose_$1234_storage_$dyn_storage_ptr",
+              "typeIdentifier": "t_array$_t_struct$_ParticipantPropose_$1231_storage_$dyn_storage_ptr",
               "typeString": "struct ParticipantPropose[]"
             },
             "typeName": {
               "baseType": {
-                "id": 1257,
+                "id": 1254,
                 "nodeType": "UserDefinedTypeName",
                 "pathNode": {
-                  "id": 1256,
+                  "id": 1253,
                   "name": "ParticipantPropose",
                   "nodeType": "IdentifierPath",
-                  "referencedDeclaration": 1234,
+                  "referencedDeclaration": 1231,
                   "src": "558:18:5"
                 },
-                "referencedDeclaration": 1234,
+                "referencedDeclaration": 1231,
                 "src": "558:18:5",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_ParticipantPropose_$1234_storage_ptr",
+                  "typeIdentifier": "t_struct$_ParticipantPropose_$1231_storage_ptr",
                   "typeString": "struct ParticipantPropose"
                 }
               },
-              "id": 1258,
+              "id": 1255,
               "nodeType": "ArrayTypeName",
               "src": "558:20:5",
               "typeDescriptions": {
-                "typeIdentifier": "t_array$_t_struct$_ParticipantPropose_$1234_storage_$dyn_storage_ptr",
+                "typeIdentifier": "t_array$_t_struct$_ParticipantPropose_$1231_storage_$dyn_storage_ptr",
                 "typeString": "struct ParticipantPropose[]"
               }
             },
@@ -1571,7 +1571,7 @@
         "name": "SessionInfo",
         "nameLocation": "367:11:5",
         "nodeType": "StructDefinition",
-        "scope": 1282,
+        "scope": 1279,
         "src": "360:233:5",
         "visibility": "public"
       },
@@ -1582,9 +1582,9 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1281,
+        "id": 1278,
         "linearizedBaseContracts": [
-          1281
+          1278
         ],
         "name": "IMain",
         "nameLocation": "665:5:5",
@@ -1592,7 +1592,7 @@
         "nodes": [
           {
             "functionSelector": "d716c549",
-            "id": 1268,
+            "id": 1265,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -1600,17 +1600,17 @@
             "nameLocation": "686:20:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1263,
+              "id": 1260,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1262,
+                  "id": 1259,
                   "mutability": "mutable",
                   "name": "_session",
                   "nameLocation": "715:8:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1268,
+                  "scope": 1265,
                   "src": "707:16:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1619,7 +1619,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1261,
+                    "id": 1258,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "707:7:5",
@@ -1635,38 +1635,38 @@
               "src": "706:18:5"
             },
             "returnParameters": {
-              "id": 1267,
+              "id": 1264,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1266,
+                  "id": 1263,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1268,
+                  "scope": 1265,
                   "src": "759:18:5",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Participant_$1227_memory_ptr",
+                    "typeIdentifier": "t_struct$_Participant_$1224_memory_ptr",
                     "typeString": "struct Participant"
                   },
                   "typeName": {
-                    "id": 1265,
+                    "id": 1262,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 1264,
+                      "id": 1261,
                       "name": "Participant",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 1227,
+                      "referencedDeclaration": 1224,
                       "src": "759:11:5"
                     },
-                    "referencedDeclaration": 1227,
+                    "referencedDeclaration": 1224,
                     "src": "759:11:5",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Participant_$1227_storage_ptr",
+                      "typeIdentifier": "t_struct$_Participant_$1224_storage_ptr",
                       "typeString": "struct Participant"
                     }
                   },
@@ -1675,7 +1675,7 @@
               ],
               "src": "758:20:5"
             },
-            "scope": 1281,
+            "scope": 1278,
             "src": "677:102:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1683,7 +1683,7 @@
           },
           {
             "functionSelector": "937f4a26",
-            "id": 1275,
+            "id": 1272,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -1691,17 +1691,17 @@
             "nameLocation": "794:26:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1273,
+              "id": 1270,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1270,
+                  "id": 1267,
                   "mutability": "mutable",
                   "name": "_participantAddr",
                   "nameLocation": "838:16:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1275,
+                  "scope": 1272,
                   "src": "830:24:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1710,7 +1710,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1269,
+                    "id": 1266,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "830:7:5",
@@ -1724,12 +1724,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 1272,
+                  "id": 1269,
                   "mutability": "mutable",
                   "name": "_deviation",
                   "nameLocation": "872:10:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1275,
+                  "scope": 1272,
                   "src": "864:18:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1738,7 +1738,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1271,
+                    "id": 1268,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "864:7:5",
@@ -1753,12 +1753,12 @@
               "src": "820:68:5"
             },
             "returnParameters": {
-              "id": 1274,
+              "id": 1271,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "897:0:5"
             },
-            "scope": 1281,
+            "scope": 1278,
             "src": "785:113:5",
             "stateMutability": "nonpayable",
             "virtual": false,
@@ -1766,7 +1766,7 @@
           },
           {
             "functionSelector": "51650ecb",
-            "id": 1280,
+            "id": 1277,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -1774,17 +1774,17 @@
             "nameLocation": "913:31:5",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1278,
+              "id": 1275,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1277,
+                  "id": 1274,
                   "mutability": "mutable",
                   "name": "_participantAddr",
                   "nameLocation": "953:16:5",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1280,
+                  "scope": 1277,
                   "src": "945:24:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1793,7 +1793,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1276,
+                    "id": 1273,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "945:7:5",
@@ -1809,19 +1809,19 @@
               "src": "944:26:5"
             },
             "returnParameters": {
-              "id": 1279,
+              "id": 1276,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "979:0:5"
             },
-            "scope": 1281,
+            "scope": 1278,
             "src": "904:76:5",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1282,
+        "scope": 1279,
         "src": "655:327:5",
         "usedErrors": []
       }
@@ -1834,7 +1834,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.5",
-  "updatedAt": "2022-03-27T15:36:29.549Z",
+  "updatedAt": "2022-03-27T16:13:30.757Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

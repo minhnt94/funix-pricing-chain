@@ -18,8 +18,9 @@ function CreateSession(props) {
   const onSubmit = async (data) => {
     const { accounts, contract } = appInfo;
     const { name, description, images, timeout } = data;
+    // default set timeout to 0
     await contract.methods
-      .initSession(name, description, images, timeout)
+      .initSession(name, description, images, 0)
       .send({ from: accounts[0] });
     toast.success('Crease session successfully');
     backToList();
@@ -84,14 +85,14 @@ function CreateSession(props) {
                   </div>
                 ))}
               </div>
-              <div className="form__block">
+              {/* <div className="form__block">
                 <label className="form__text form-label">Timeout:</label>
                 <input
                   className="form__input form-control"
                   type="number"
                   {...register('timeout')}
                 />
-              </div>
+              </div> */}
               <button className="btn btn-primary mt-3" type="submit">
                 Create session
               </button>
