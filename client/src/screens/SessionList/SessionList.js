@@ -26,7 +26,6 @@ function SessionList() {
         const sessions = await contract.methods
           .getSessions()
           .call({ from: accounts[0] });
-        console.log('sessions', sessions);
         setSessions(sessions);
       }
     }
@@ -92,10 +91,12 @@ function SessionList() {
 
   const getCurrentProposePrice = () => {
     const proposeList = currentSession?.proposeList;
-    const currentPropose = proposeList.find(propose => propose.participantAddress === accounts[0])
+    const currentPropose = proposeList.find(
+      (propose) => propose.participantAddress === accounts[0]
+    );
 
-    return currentPropose
-  }
+    return currentPropose;
+  };
 
   return (
     <Layout>
@@ -205,13 +206,15 @@ function SessionList() {
                     {getStatusText(currentSession.state)}
                   </span>
                 </div>
+                {Boolean(getCurrentProposePrice()?.price) && !isAdmin && (
+                  <div className="info__propose-price">
+                    <span className="fs-5 fw-bold">Last propose price:</span>
+                    <span>{getCurrentProposePrice()?.price}</span>
+                  </div>
+                )}
+
                 {+currentSession.state === STATUS.ON_GOING && !isAdmin && (
                   <>
-                    <div className="info__propose-price">
-                      <span className="fs-5 fw-bold">Last propose price:</span>
-                      <span>{getCurrentProposePrice()?.price}</span>
-                      
-                    </div>
                     <div className="info__propose-price">
                       <label className="fs-5 fw-bold">Propose price:</label>
                       <input ref={proposePriceEle} />
@@ -225,43 +228,55 @@ function SessionList() {
                   </>
                 )}
 
-                {+currentSession.state === STATUS.CLOSED && isAdmin && (
-                  <div className="info__propose-price">
-                    <label className="fs-5 fw-bold">Propose price:</label>
-                    <span>{currentSession.proposePrice}</span>
-                  </div>
+                {+currentSession.state === STATUS.CLOSED && !isAdmin && (
+                  <>
+                    <div className="info__final-price">
+                      {+currentSession.finalPrice > 0 && (
+                        <>
+                          <label className="fs-5 fw-bold">Final price:</label>
+                          <span>{currentSession.finalPrice}</span>
+                        </>
+                      )}
+                    </div>
+                  </>
                 )}
 
                 {+currentSession.state === STATUS.CLOSED && isAdmin && (
-                  <div className="info__final-price">
-                    {+currentSession.finalPrice > 0 && (
-                      <>
-                        <label className="fs-5 fw-bold">Final price:</label>
-                        <span>{currentSession.finalPrice}</span>
-                      </>
-                    )}
+                  <>
+                    <div className="info__propose-price">
+                      <label className="fs-5 fw-bold">Propose price:</label>
+                      <span>{currentSession.proposePrice}</span>
+                    </div>
+                    <div className="info__final-price">
+                      {+currentSession.finalPrice > 0 && (
+                        <>
+                          <label className="fs-5 fw-bold">Final price:</label>
+                          <span>{currentSession.finalPrice}</span>
+                        </>
+                      )}
 
-                    {+currentSession.finalPrice === 0 && (
-                      <div className="row mt-3">
-                        <div className="col-6">
-                          <input
-                            ref={finalPriceEle}
-                            className="form-control"
-                            id="finalPriceFloating"
-                            placeholder="Enter final price"
-                          />
+                      {+currentSession.finalPrice === 0 && (
+                        <div className="row mt-3">
+                          <div className="col-6">
+                            <input
+                              ref={finalPriceEle}
+                              className="form-control"
+                              id="finalPriceFloating"
+                              placeholder="Enter final price"
+                            />
+                          </div>
+                          <div className="col-6">
+                            <button
+                              className="btn btn-primary"
+                              onClick={handleSubmitFinalPrice}
+                            >
+                              Set final price
+                            </button>
+                          </div>
                         </div>
-                        <div className="col-6">
-                          <button
-                            className="btn btn-primary"
-                            onClick={handleSubmitFinalPrice}
-                          >
-                            Set final price
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                      )}
+                    </div>
+                  </>
                 )}
                 {+currentSession.state === STATUS.ON_GOING && isAdmin && (
                   <button

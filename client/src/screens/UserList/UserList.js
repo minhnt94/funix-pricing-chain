@@ -34,7 +34,6 @@ function UserList(props) {
           .getParticipantList()
           .call({ from: accounts[0] });
 
-        console.log('participants', participants);
         setParticipants(participants);
       }
     }
